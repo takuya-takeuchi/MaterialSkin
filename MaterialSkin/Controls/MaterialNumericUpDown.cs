@@ -8,7 +8,7 @@ namespace MaterialSkin.Controls
     using System.Windows.Forms;
     using MaterialSkin.Animations;
 
-    public class MaterialNumericUoDown : Control, IMaterialControl
+    public class MaterialNumericUpDown : Control, IMaterialControl
     {
 
         MaterialContextMenuStrip cms = new BaseTextBoxContextMenuStrip();
@@ -1281,7 +1281,7 @@ namespace MaterialSkin.Controls
 
         protected readonly BaseTextBox baseTextBox;
 
-        public MaterialNumericUoDown()
+        public MaterialNumericUpDown()
         {
             // Material Properties
             UseAccent = true;
