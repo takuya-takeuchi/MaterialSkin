@@ -2100,38 +2100,28 @@ namespace MaterialSkinExample
             // _MaterialNumericUpDown
             // 
             this._MaterialNumericUpDown.AnimateReadOnly = false;
-            this._MaterialNumericUpDown.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
-            this._MaterialNumericUpDown.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
             this._MaterialNumericUpDown.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this._MaterialNumericUpDown.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
             this._MaterialNumericUpDown.Depth = 0;
             this._MaterialNumericUpDown.DownIcon = global::MaterialSkinExample.Properties.Resources.keyboard_arrow_down_FILL1_wght400_GRAD0_opsz24;
             this._MaterialNumericUpDown.ErrorMessage = "Invalid entry";
             this._MaterialNumericUpDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this._MaterialNumericUpDown.HelperText = "Helper Text";
-            this._MaterialNumericUpDown.HideSelection = true;
             this._MaterialNumericUpDown.Location = new System.Drawing.Point(528, 458);
-            this._MaterialNumericUpDown.MaxLength = 32767;
             this._MaterialNumericUpDown.MouseState = MaterialSkin.MouseState.OUT;
             this._MaterialNumericUpDown.Name = "_MaterialNumericUpDown";
-            this._MaterialNumericUpDown.PasswordChar = '\0';
             this._MaterialNumericUpDown.PrefixSuffixText = "$";
             this._MaterialNumericUpDown.ReadOnly = false;
             this._MaterialNumericUpDown.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this._MaterialNumericUpDown.SelectedText = "";
-            this._MaterialNumericUpDown.SelectionLength = 0;
-            this._MaterialNumericUpDown.SelectionStart = 0;
-            this._MaterialNumericUpDown.ShortcutsEnabled = true;
             this._MaterialNumericUpDown.ShowAssistiveText = true;
             this._MaterialNumericUpDown.Size = new System.Drawing.Size(384, 64);
             this._MaterialNumericUpDown.TabIndex = 71;
             this._MaterialNumericUpDown.TabStop = false;
-            this._MaterialNumericUpDown.Text = "MaterialTextBox2";
             this._MaterialNumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this._MaterialNumericUpDown.UpIcon = global::MaterialSkinExample.Properties.Resources.keyboard_arrow_up_FILL1_wght400_GRAD0_opsz24;
-            this._MaterialNumericUpDown.UseSystemPasswordChar = false;
             this._MaterialNumericUpDown.LeadingIconClick += new System.EventHandler(this.materialTextBox21_LeadingIconClick);
             this._MaterialNumericUpDown.TrailingIconClick += new System.EventHandler(this.materialTextBox21_TrailingIconClick);
+            this._MaterialNumericUpDown.Value = 0;
             // 
             // materialMultiLineTextBox21
             // 

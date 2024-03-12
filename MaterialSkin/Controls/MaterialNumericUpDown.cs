@@ -37,15 +37,6 @@ namespace MaterialSkin.Controls
         public string SelectedText { get { return baseTextBox.SelectedText; } set { baseTextBox.SelectedText = value; } }
 
         [Browsable(false)]
-        public int SelectionStart { get { return baseTextBox.SelectionStart; } set { baseTextBox.SelectionStart = value; } }
-
-        [Browsable(false)]
-        public int SelectionLength { get { return baseTextBox.SelectionLength; } set { baseTextBox.SelectionLength = value; } }
-
-        [Browsable(false)]
-        public int TextLength { get { return baseTextBox.TextLength; } }
-
-        [Browsable(false)]
         public override System.Drawing.Color ForeColor { get; set; }
 
 
@@ -110,19 +101,6 @@ namespace MaterialSkin.Controls
             }
         }
 
-        [Category("Material Skin"), DefaultValue(""), Localizable(true)]
-        public string Hint
-        {
-            get { return baseTextBox.Hint; }
-            set
-            {
-                baseTextBox.Hint = value;
-                hasHint = !String.IsNullOrEmpty(baseTextBox.Hint);
-                UpdateRects();
-                Invalidate();
-            }
-        }
-
         [Category("Material Skin"), DefaultValue(true)]
         public bool UseAccent { get; set; }
 
@@ -154,8 +132,62 @@ namespace MaterialSkin.Controls
             }
         }
 
+        private decimal _value;
+
         [System.ComponentModel.Bindable(true)]
-        public decimal Value { get; set; }
+        public decimal Value
+        {
+            get { return _value; }
+            set
+            {
+                _value = value;
+                baseTextBox.Text = value.ToString(CultureInfo.InvariantCulture);
+                UpdateRects();
+                Invalidate();
+            }
+        }
+
+        private decimal _maximum = 100;
+
+        [System.ComponentModel.Bindable(true)]
+        [DefaultValue(100)]
+        public decimal Maximum
+        {
+            get { return _maximum; }
+            set
+            {
+                _maximum = value;
+                Invalidate();
+            }
+        }
+
+        private decimal _minimum = 0;
+
+        [System.ComponentModel.Bindable(true)]
+        [DefaultValue(0)]
+        public decimal Minimum
+        {
+            get { return _minimum; }
+            set
+            {
+                _minimum = value;
+                Invalidate();
+            }
+        }
+
+        private decimal _increment = 1;
+
+        [System.ComponentModel.Bindable(true)]
+        [DefaultValue(1)]
+        public decimal Increment
+        {
+            get { return _increment; }
+            set
+            {
+                _increment = value;
+                Invalidate();
+            }
+        }
 
         public enum PrefixSuffixTypes
         {
@@ -223,46 +255,11 @@ namespace MaterialSkin.Controls
         [Browsable(false)]
         public override Color BackColor { get { return Parent == null ? SkinManager.BackgroundColor : Parent.BackColor; } }
 
-        public override string Text { get { return baseTextBox.Text; } set { baseTextBox.Text = value; UpdateRects(); } }
+        //public override string Text { get { return baseTextBox.Text; } set { baseTextBox.Text = value; UpdateRects(); } }
+        public override string Text { get { return null; } set { } }
 
         [Category("Appearance")]
         public HorizontalAlignment TextAlign { get { return baseTextBox.TextAlign; } set { baseTextBox.TextAlign = value; } }
-
-        [Category("Behavior")]
-        public CharacterCasing CharacterCasing { get { return baseTextBox.CharacterCasing; } set { baseTextBox.CharacterCasing = value; } }
-
-        [Category("Behavior")]
-        public bool HideSelection { get { return baseTextBox.HideSelection; } set { baseTextBox.HideSelection = value; } }
-
-        [Category("Behavior")]
-        public int MaxLength { get { return baseTextBox.MaxLength; } set { baseTextBox.MaxLength = value; } }
-
-        [Category("Behavior")]
-        public char PasswordChar { get { return baseTextBox.PasswordChar; } set { baseTextBox.PasswordChar = value; } }
-
-        [Category("Behavior")]
-        public bool ShortcutsEnabled 
-        { 
-            get 
-            { return baseTextBox.ShortcutsEnabled; } 
-            set 
-            { 
-                baseTextBox.ShortcutsEnabled = value;
-                if (value == false)
-                {
-                    baseTextBox.ContextMenuStrip = null;
-                    base.ContextMenuStrip = null;
-                }
-                else
-                {
-                    baseTextBox.ContextMenuStrip = _lastContextMenuStrip;
-                    base.ContextMenuStrip = _lastContextMenuStrip;
-                }
-            }
-        }
-
-        [Category("Behavior")]
-        public bool UseSystemPasswordChar { get { return baseTextBox.UseSystemPasswordChar; } set { baseTextBox.UseSystemPasswordChar = value; } }
 
         public new object Tag { get { return baseTextBox.Tag; } set { baseTextBox.Tag = value; } }
 
@@ -317,12 +314,6 @@ namespace MaterialSkin.Controls
             }
         }
 
-        public AutoCompleteStringCollection AutoCompleteCustomSource { get { return baseTextBox.AutoCompleteCustomSource; } set { baseTextBox.AutoCompleteCustomSource = value; } }
-
-        public AutoCompleteSource AutoCompleteSource { get { return baseTextBox.AutoCompleteSource; } set { baseTextBox.AutoCompleteSource = value; } }
-
-        public AutoCompleteMode AutoCompleteMode { get { return baseTextBox.AutoCompleteMode; } set { baseTextBox.AutoCompleteMode = value; } }
-
         public void SelectAll() { baseTextBox.SelectAll(); }
 
         public void Clear() { baseTextBox.Clear(); }
@@ -348,18 +339,6 @@ namespace MaterialSkin.Controls
         #endregion
 
         # region Forwarding events to baseTextBox
-
-        public event EventHandler AcceptsTabChanged
-        {
-            add
-            {
-                baseTextBox.AcceptsTabChanged += value;
-            }
-            remove
-            {
-                baseTextBox.AcceptsTabChanged -= value;
-            }
-        }
 
         public new event EventHandler AutoSizeChanged
         {
@@ -406,18 +385,6 @@ namespace MaterialSkin.Controls
             remove
             {
                 baseTextBox.BindingContextChanged -= value;
-            }
-        }
-
-        public event EventHandler BorderStyleChanged
-        {
-            add
-            {
-                baseTextBox.BorderStyleChanged += value;
-            }
-            remove
-            {
-                baseTextBox.BorderStyleChanged -= value;
             }
         }
 
@@ -723,18 +690,6 @@ namespace MaterialSkin.Controls
             }
         }
 
-        public event EventHandler HideSelectionChanged
-        {
-            add
-            {
-                baseTextBox.HideSelectionChanged += value;
-            }
-            remove
-            {
-                baseTextBox.HideSelectionChanged -= value;
-            }
-        }
-
         public new event EventHandler ImeModeChanged
         {
             add
@@ -852,18 +807,6 @@ namespace MaterialSkin.Controls
             remove
             {
                 baseTextBox.MarginChanged -= value;
-            }
-        }
-
-        public event EventHandler ModifiedChanged
-        {
-            add
-            {
-                baseTextBox.ModifiedChanged += value;
-            }
-            remove
-            {
-                baseTextBox.ModifiedChanged -= value;
             }
         }
 
@@ -999,18 +942,6 @@ namespace MaterialSkin.Controls
             }
         }
 
-        public event EventHandler MultilineChanged
-        {
-            add
-            {
-                baseTextBox.MultilineChanged += value;
-            }
-            remove
-            {
-                baseTextBox.MultilineChanged -= value;
-            }
-        }
-
         public new event EventHandler PaddingChanged
         {
             add
@@ -1080,18 +1011,6 @@ namespace MaterialSkin.Controls
             remove
             {
                 baseTextBox.QueryContinueDrag -= value;
-            }
-        }
-
-        public event EventHandler ReadOnlyChanged
-        {
-            add
-            {
-                baseTextBox.ReadOnlyChanged += value;
-            }
-            remove
-            {
-                baseTextBox.ReadOnlyChanged -= value;
             }
         }
 
@@ -1191,18 +1110,6 @@ namespace MaterialSkin.Controls
             }
         }
 
-       public event EventHandler TextAlignChanged
-        {
-            add
-            {
-                baseTextBox.TextAlignChanged += value;
-            }
-            remove
-            {
-                baseTextBox.TextAlignChanged -= value;
-            }
-        }
-
         public new event EventHandler TextChanged
         {
             add
@@ -1275,6 +1182,8 @@ namespace MaterialSkin.Controls
         private int _prefix_padding;
         private int _suffix_padding;
         private int _helperTextHeight;
+        private bool _upIconDown;
+        private bool _downIconDown;
         private Rectangle _upIconBounds;
         private Rectangle _downIconBounds;
 
@@ -1356,6 +1265,7 @@ namespace MaterialSkin.Controls
                 UpdateRects();
             };
 
+            baseTextBox.Leave += new EventHandler(ParseTextToValue);
             baseTextBox.TextChanged += new EventHandler(Redraw);
             baseTextBox.BackColorChanged += new EventHandler(Redraw);
 
@@ -1365,6 +1275,18 @@ namespace MaterialSkin.Controls
             cms.Opening += ContextMenuStripOnOpening;
             cms.OnItemClickStart += ContextMenuStripOnItemClickStart;
             ContextMenuStrip = cms;
+        }
+
+        private void ParseTextToValue(object sencer, EventArgs e)
+        {
+            if (decimal.TryParse(baseTextBox.Text, out var value))
+            {
+                if (value > Maximum)
+                    value = Maximum;
+                if (value < Minimum)
+                    value = Minimum;
+                Value = value;
+            }
         }
 
         private void Redraw(object sencer, EventArgs e)
@@ -1479,7 +1401,7 @@ namespace MaterialSkin.Controls
                 using (NativeTextRenderer NativeText = new NativeTextRenderer(g))
                 {
                     NativeText.DrawTransparentText(
-                    Hint,
+                    "",
                     SkinManager.getTextBoxFontBySize(hintTextSize),
                     Enabled ? !_errorState || (!userTextPresent && !isFocused) ? isFocused ? UseAccent ?
                     SkinManager.ColorScheme.AccentColor : // Focus Accent
@@ -1562,15 +1484,24 @@ namespace MaterialSkin.Controls
             if (DesignMode)
                 return;
 
+            _upIconDown = false;
+            _downIconDown = false;
+
             if (this._upIconBounds.Contains(e.Location))
             {
-                Value += 1;
-                Text = Value.ToString(CultureInfo.InvariantCulture);
+                var newValue = Value + Increment;
+                if (newValue > Maximum)
+                    newValue = Maximum;
+                Value = newValue;
+                baseTextBox.Text = Value.ToString(CultureInfo.InvariantCulture);
             }
             else if (this._downIconBounds.Contains(e.Location))
             {
-                Value -= 1;
-                Text = Value.ToString(CultureInfo.InvariantCulture);
+                var newValue = Value - Increment;
+                if (newValue < Minimum)
+                    newValue = Minimum;
+                Value = newValue;
+                baseTextBox.Text = Value.ToString(CultureInfo.InvariantCulture);
             }
             else
             {
@@ -1585,12 +1516,19 @@ namespace MaterialSkin.Controls
 
             if (this._upIconBounds.Contains(e.Location))
             {
-
-            } else if (this._downIconBounds.Contains(e.Location)) {
-
+                _upIconDown = true;
+                _downIconDown = false;
+            }
+            else if (this._downIconBounds.Contains(e.Location))
+            {
+                _upIconDown = false;
+                _downIconDown = true;
             }
             else
             {
+                _upIconDown = false;
+                _downIconDown = false;
+
                 baseTextBox?.Focus();
                 base.OnMouseDown(e);
             }
@@ -1732,14 +1670,14 @@ namespace MaterialSkin.Controls
                 // ********************
 
                 //Resize icon if greater than ICON_SIZE
-                Size newSize_leadingIcon = ResizeIcon(_downIcon);
-                Bitmap _leadingIconIconResized = new Bitmap(_downIcon, newSize_leadingIcon.Width, newSize_leadingIcon.Height);
+                Size newSize_downIcon = ResizeIcon(_downIcon);
+                Bitmap _downIconIconResized = new Bitmap(_downIcon, newSize_downIcon.Width, newSize_downIcon.Height);
 
                 // Create a pre-processed copy of the image (GRAY)
                 Bitmap bgray = new Bitmap(destRect.Width, destRect.Height);
                 using (Graphics gGray = Graphics.FromImage(bgray))
                 {
-                    gGray.DrawImage(_leadingIconIconResized,
+                    gGray.DrawImage(_downIconIconResized,
                         new Point[] {
                                     new Point(0, 0),
                                     new Point(destRect.Width, 0),
@@ -1752,7 +1690,7 @@ namespace MaterialSkin.Controls
                 Bitmap bred = new Bitmap(destRect.Width, destRect.Height);
                 using (Graphics gred = Graphics.FromImage(bred))
                 {
-                    gred.DrawImage(_leadingIconIconResized,
+                    gred.DrawImage(_downIconIconResized,
                         new Point[] {
                                     new Point(0, 0),
                                     new Point(destRect.Width, 0),
@@ -1770,10 +1708,10 @@ namespace MaterialSkin.Controls
 
                 var iconRect = _downIconBounds;
 
-                textureBrushGray.TranslateTransform(iconRect.X + iconRect.Width / 2 - _leadingIconIconResized.Width / 2,
-                                                    iconRect.Y + iconRect.Height / 2 - _leadingIconIconResized.Height / 2);
-                textureBrushRed.TranslateTransform(iconRect.X + iconRect.Width / 2 - _leadingIconIconResized.Width / 2,
-                                                     iconRect.Y + iconRect.Height / 2 - _leadingIconIconResized.Height / 2);
+                textureBrushGray.TranslateTransform(iconRect.X + iconRect.Width / 2 - _downIconIconResized.Width / 2,
+                                                    iconRect.Y + iconRect.Height / 2 - _downIconIconResized.Height / 2);
+                textureBrushRed.TranslateTransform(iconRect.X + iconRect.Width / 2 - _downIconIconResized.Width / 2,
+                                                     iconRect.Y + iconRect.Height / 2 - _downIconIconResized.Height / 2);
 
                 // add to dictionary
                 iconsBrushes.Add("_downIcon", textureBrushGray);
@@ -1789,14 +1727,14 @@ namespace MaterialSkin.Controls
                 // *********************
 
                 //Resize icon if greater than ICON_SIZE
-                Size newSize_trailingIcon = ResizeIcon(_upIcon);
-                Bitmap _trailingIconResized = new Bitmap(_upIcon, newSize_trailingIcon.Width, newSize_trailingIcon.Height);
+                Size newSize_upIcon = ResizeIcon(_upIcon);
+                Bitmap _upIconResized = new Bitmap(_upIcon, newSize_upIcon.Width, newSize_upIcon.Height);
 
                 // Create a pre-processed copy of the image (GRAY)
                 Bitmap bgray = new Bitmap(destRect.Width, destRect.Height);
                 using (Graphics gGray = Graphics.FromImage(bgray))
                 {
-                    gGray.DrawImage(_trailingIconResized,
+                    gGray.DrawImage(_upIconResized,
                         new Point[] {
                                     new Point(0, 0),
                                     new Point(destRect.Width, 0),
@@ -1809,7 +1747,7 @@ namespace MaterialSkin.Controls
                 Bitmap bred = new Bitmap(destRect.Width, destRect.Height);
                 using (Graphics gred = Graphics.FromImage(bred))
                 {
-                    gred.DrawImage(_trailingIconResized,
+                    gred.DrawImage(_upIconResized,
                         new Point[] {
                                     new Point(0, 0),
                                     new Point(destRect.Width, 0),
@@ -1828,10 +1766,10 @@ namespace MaterialSkin.Controls
 
                 var iconRect = _upIconBounds;
 
-                textureBrushGray.TranslateTransform(iconRect.X + iconRect.Width / 2 - _trailingIconResized.Width / 2,
-                                                    iconRect.Y + iconRect.Height / 2 - _trailingIconResized.Height / 2);
-                textureBrushRed.TranslateTransform(iconRect.X + iconRect.Width / 2 - _trailingIconResized.Width / 2,
-                                                     iconRect.Y + iconRect.Height / 2 - _trailingIconResized.Height / 2);
+                textureBrushGray.TranslateTransform(iconRect.X + iconRect.Width / 2 - _upIconResized.Width / 2,
+                                                    iconRect.Y + iconRect.Height / 2 - _upIconResized.Height / 2);
+                textureBrushRed.TranslateTransform(iconRect.X + iconRect.Width / 2 - _upIconResized.Width / 2,
+                                                     iconRect.Y + iconRect.Height / 2 - _upIconResized.Height / 2);
 
                 // add to dictionary
                 iconsBrushes.Add("_upIcon", textureBrushGray);
