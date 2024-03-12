@@ -139,6 +139,7 @@ namespace MaterialSkinExample
             this.materialSwitch11 = new MaterialSkin.Controls.MaterialSwitch();
             this.materialSwitch10 = new MaterialSkin.Controls.MaterialSwitch();
             this.materialTextBox21 = new MaterialSkin.Controls.MaterialTextBox2();
+            this._MaterialNumericUpDown = new MaterialSkin.Controls.MaterialNumericUpDown();
             this.materialMultiLineTextBox21 = new MaterialSkin.Controls.MaterialMultiLineTextBox2();
             this.materialTextBox5 = new MaterialSkin.Controls.MaterialTextBox2();
             this.materialTextBox4 = new MaterialSkin.Controls.MaterialTextBox2();
@@ -1852,6 +1853,7 @@ namespace MaterialSkinExample
             this.tabPage3.Controls.Add(this.materialSwitch11);
             this.tabPage3.Controls.Add(this.materialSwitch10);
             this.tabPage3.Controls.Add(this.materialTextBox21);
+            this.tabPage3.Controls.Add(this._MaterialNumericUpDown);
             this.tabPage3.Controls.Add(this.materialMultiLineTextBox21);
             this.tabPage3.Controls.Add(this.materialTextBox5);
             this.tabPage3.Controls.Add(this.materialTextBox4);
@@ -2094,6 +2096,32 @@ namespace MaterialSkinExample
             this.materialTextBox21.UseSystemPasswordChar = false;
             this.materialTextBox21.LeadingIconClick += new System.EventHandler(this.materialTextBox21_LeadingIconClick);
             this.materialTextBox21.TrailingIconClick += new System.EventHandler(this.materialTextBox21_TrailingIconClick);
+            // 
+            // _MaterialNumericUpDown
+            // 
+            this._MaterialNumericUpDown.AnimateReadOnly = false;
+            this._MaterialNumericUpDown.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this._MaterialNumericUpDown.Depth = 0;
+            this._MaterialNumericUpDown.DownIcon = global::MaterialSkinExample.Properties.Resources.keyboard_arrow_down_FILL1_wght400_GRAD0_opsz24;
+            this._MaterialNumericUpDown.ErrorMessage = "Invalid entry";
+            this._MaterialNumericUpDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this._MaterialNumericUpDown.HelperText = "Helper Text";
+            this._MaterialNumericUpDown.Location = new System.Drawing.Point(528, 458);
+            this._MaterialNumericUpDown.MouseState = MaterialSkin.MouseState.OUT;
+            this._MaterialNumericUpDown.Name = "_MaterialNumericUpDown";
+            this._MaterialNumericUpDown.PrefixSuffixText = "$";
+            this._MaterialNumericUpDown.ReadOnly = false;
+            this._MaterialNumericUpDown.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._MaterialNumericUpDown.SelectedText = "";
+            this._MaterialNumericUpDown.ShowAssistiveText = true;
+            this._MaterialNumericUpDown.Size = new System.Drawing.Size(384, 64);
+            this._MaterialNumericUpDown.TabIndex = 71;
+            this._MaterialNumericUpDown.TabStop = false;
+            this._MaterialNumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this._MaterialNumericUpDown.UpIcon = global::MaterialSkinExample.Properties.Resources.keyboard_arrow_up_FILL1_wght400_GRAD0_opsz24;
+            this._MaterialNumericUpDown.LeadingIconClick += new System.EventHandler(this.materialTextBox21_LeadingIconClick);
+            this._MaterialNumericUpDown.TrailingIconClick += new System.EventHandler(this.materialTextBox21_TrailingIconClick);
+            this._MaterialNumericUpDown.Value = 0;
             // 
             // materialMultiLineTextBox21
             // 
@@ -3690,5 +3718,6 @@ namespace MaterialSkinExample
         private MaterialLabel materialLabel57;
         private MaterialSwitch materialSwitch16;
         private MaterialLabel materialLabel58;
+        private MaterialNumericUpDown _MaterialNumericUpDown;
     }
 }

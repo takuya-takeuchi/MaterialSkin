@@ -123,6 +123,26 @@ namespace MaterialSkinExample.Properties {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
+        internal static System.Drawing.Bitmap keyboard_arrow_down_FILL1_wght400_GRAD0_opsz24 {
+            get {
+                object obj = ResourceManager.GetObject("keyboard_arrow_down_FILL1_wght400_GRAD0_opsz24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
+        /// </summary>
+        internal static System.Drawing.Bitmap keyboard_arrow_up_FILL1_wght400_GRAD0_opsz24 {
+            get {
+                object obj = ResourceManager.GetObject("keyboard_arrow_up_FILL1_wght400_GRAD0_opsz24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
+        /// </summary>
         internal static System.Drawing.Bitmap minus {
             get {
                 object obj = ResourceManager.GetObject("minus", resourceCulture);
