@@ -24,12 +24,15 @@
 
         // icons
         private TextureBrush iconsBrushes;
-        
+
         /// <summary>
         /// Gets or sets the Depth
         /// </summary>
         [Browsable(false)]
         public int Depth { get; set; }
+
+        [Category("Material Skin")]
+        public bool UseColorIcon { get; set; }
 
         /// <summary>
         /// Gets the SkinManager
@@ -99,10 +102,10 @@
         public MaterialButtonDensity Density
         {
             get { return _density; }
-            set 
-            { 
+            set
+            {
                 _density = value;
-                if (_density== MaterialButtonDensity.Dense)
+                if (_density == MaterialButtonDensity.Dense)
                     Size = new Size(Size.Width, HEIGHTDENSE);
                 else
                     Size = new Size(Size.Width, HEIGHTDEFAULT);
@@ -325,7 +328,7 @@
 
             int newWidth, newHeight;
             //Resize icon if greater than ICON_SIZE
-            if (Icon.Width> ICON_SIZE || Icon.Height > ICON_SIZE)
+            if (Icon.Width > ICON_SIZE || Icon.Height > ICON_SIZE)
             {
                 //calculate aspect ratio
                 float aspect = Icon.Width / (float)Icon.Height;
@@ -361,50 +364,84 @@
             // Calculate lightness and color
             float l = (SkinManager.Theme == MaterialSkinManager.Themes.LIGHT & (highEmphasis == false | Enabled == false | Type != MaterialButtonType.Contained)) ? 0f : 1.5f;
 
-            // Create matrices
-            float[][] matrixGray = {
-                    new float[] {   0,   0,   0,   0,  0}, // Red scale factor
-                    new float[] {   0,   0,   0,   0,  0}, // Green scale factor
-                    new float[] {   0,   0,   0,   0,  0}, // Blue scale factor
-                    new float[] {   0,   0,   0, Enabled ? .7f : .3f,  0}, // alpha scale factor
-                    new float[] {   l,   l,   l,   0,  1}};// offset
-
-
-            ColorMatrix colorMatrixGray = new ColorMatrix(matrixGray);
-
-            ImageAttributes grayImageAttributes = new ImageAttributes();
-
-            // Set color matrices
-            grayImageAttributes.SetColorMatrix(colorMatrixGray, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
-
-            // Image Rect
-            Rectangle destRect = new Rectangle(0, 0, ICON_SIZE, ICON_SIZE);
-
-            // Create a pre-processed copy of the image (GRAY)
-            Bitmap bgray = new Bitmap(destRect.Width, destRect.Height);
-            using (Graphics gGray = Graphics.FromImage(bgray))
+            if (!UseColorIcon)
             {
-                gGray.DrawImage(IconResized,
-                    new Point[] {
-                                new Point(0, 0),
-                                new Point(destRect.Width, 0),
-                                new Point(0, destRect.Height),
-                    },
-                    destRect, GraphicsUnit.Pixel, grayImageAttributes);
+                // Create matrices
+                float[][] matrixGray = {
+                        new float[] {   0,   0,   0,   0,  0}, // Red scale factor
+                        new float[] {   0,   0,   0,   0,  0}, // Green scale factor
+                        new float[] {   0,   0,   0,   0,  0}, // Blue scale factor
+                        new float[] {   0,   0,   0, Enabled ? .7f : .3f,  0}, // alpha scale factor
+                        new float[] {   l,   l,   l,   0,  1}};// offset
+
+
+                ColorMatrix colorMatrixGray = new ColorMatrix(matrixGray);
+
+                ImageAttributes grayImageAttributes = new ImageAttributes();
+
+                // Set color matrices
+                grayImageAttributes.SetColorMatrix(colorMatrixGray, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
+
+                // Image Rect
+                Rectangle destRect = new Rectangle(0, 0, ICON_SIZE, ICON_SIZE);
+
+                // Create a pre-processed copy of the image (GRAY)
+                Bitmap bgray = new Bitmap(destRect.Width, destRect.Height);
+                using (Graphics gGray = Graphics.FromImage(bgray))
+                {
+                    gGray.DrawImage(IconResized,
+                        new Point[] {
+                                    new Point(0, 0),
+                                    new Point(destRect.Width, 0),
+                                    new Point(0, destRect.Height),
+                        },
+                        destRect, GraphicsUnit.Pixel, grayImageAttributes);
+                }
+
+                // added processed image to brush for drawing
+                TextureBrush textureBrushGray = new TextureBrush(bgray);
+
+                textureBrushGray.WrapMode = System.Drawing.Drawing2D.WrapMode.Clamp;
+
+                // Translate the brushes to the correct positions
+                var iconRect = new Rectangle(8, (Height / 2 - ICON_SIZE / 2), ICON_SIZE, ICON_SIZE);
+
+                textureBrushGray.TranslateTransform(iconRect.X + iconRect.Width / 2 - IconResized.Width / 2,
+                                                    iconRect.Y + iconRect.Height / 2 - IconResized.Height / 2);
+
+                iconsBrushes = textureBrushGray;
             }
+            else
+            {
+                // Image Rect
+                Rectangle destRect = new Rectangle(0, 0, ICON_SIZE, ICON_SIZE);
 
-            // added processed image to brush for drawing
-            TextureBrush textureBrushGray = new TextureBrush(bgray);
+                // Create a pre-processed copy of the image (GRAY)
+                Bitmap bgray = new Bitmap(destRect.Width, destRect.Height);
+                using (Graphics gGray = Graphics.FromImage(bgray))
+                {
+                    gGray.DrawImage(IconResized,
+                        new Point[] {
+                                    new Point(0, 0),
+                                    new Point(destRect.Width, 0),
+                                    new Point(0, destRect.Height),
+                        },
+                        destRect, GraphicsUnit.Pixel);
+                }
 
-            textureBrushGray.WrapMode = System.Drawing.Drawing2D.WrapMode.Clamp;
+                // added processed image to brush for drawing
+                TextureBrush textureBrushGray = new TextureBrush(bgray);
 
-            // Translate the brushes to the correct positions
-            var iconRect = new Rectangle(8, (Height/2 - ICON_SIZE / 2), ICON_SIZE, ICON_SIZE);
+                textureBrushGray.WrapMode = System.Drawing.Drawing2D.WrapMode.Clamp;
 
-            textureBrushGray.TranslateTransform(iconRect.X + iconRect.Width / 2 - IconResized.Width / 2,
-                                                iconRect.Y + iconRect.Height / 2 - IconResized.Height / 2);
+                // Translate the brushes to the correct positions
+                var iconRect = new Rectangle(8, (Height / 2 - ICON_SIZE / 2), ICON_SIZE, ICON_SIZE);
 
-            iconsBrushes = textureBrushGray;
+                textureBrushGray.TranslateTransform(iconRect.X + iconRect.Width / 2 - IconResized.Width / 2,
+                                                    iconRect.Y + iconRect.Height / 2 - IconResized.Height / 2);
+
+                iconsBrushes = textureBrushGray;
+            }
         }
 
         /// <summary>
@@ -534,7 +571,7 @@
 
             Color textColor = Enabled ? (HighEmphasis ? (Type == MaterialButtonType.Text || Type == MaterialButtonType.Outlined) ?
                 UseAccentColor ? SkinManager.ColorScheme.AccentColor : // Outline or Text and accent and emphasis
-                NoAccentTextColor == Color.Empty ? 
+                NoAccentTextColor == Color.Empty ?
                 SkinManager.ColorScheme.PrimaryColor :  // Outline or Text and emphasis
                 NoAccentTextColor : // User defined Outline or Text and emphasis
                 SkinManager.ColorScheme.TextColor : // Contained and Emphasis
@@ -607,7 +644,7 @@
                 s.Width += extra;
                 s.Height = HEIGHTDEFAULT;
             }
-            if (Icon != null && Text.Length==0 && s.Width < MINIMUMWIDTHICONONLY) s.Width = MINIMUMWIDTHICONONLY;
+            if (Icon != null && Text.Length == 0 && s.Width < MINIMUMWIDTHICONONLY) s.Width = MINIMUMWIDTHICONONLY;
             else if (s.Width < MINIMUMWIDTH) s.Width = MINIMUMWIDTH;
 
             return s;
