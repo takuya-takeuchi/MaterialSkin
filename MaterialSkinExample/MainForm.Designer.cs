@@ -139,6 +139,7 @@ namespace MaterialSkinExample
             this.materialSwitch11 = new MaterialSkin.Controls.MaterialSwitch();
             this.materialSwitch10 = new MaterialSkin.Controls.MaterialSwitch();
             this.materialTextBox21 = new MaterialSkin.Controls.MaterialTextBox2();
+            this.materialNumericUoDown = new MaterialSkin.Controls.MaterialNumericUoDown();
             this.materialMultiLineTextBox21 = new MaterialSkin.Controls.MaterialMultiLineTextBox2();
             this.materialTextBox5 = new MaterialSkin.Controls.MaterialTextBox2();
             this.materialTextBox4 = new MaterialSkin.Controls.MaterialTextBox2();
@@ -1852,6 +1853,7 @@ namespace MaterialSkinExample
             this.tabPage3.Controls.Add(this.materialSwitch11);
             this.tabPage3.Controls.Add(this.materialSwitch10);
             this.tabPage3.Controls.Add(this.materialTextBox21);
+            this.tabPage3.Controls.Add(this.materialNumericUoDown);
             this.tabPage3.Controls.Add(this.materialMultiLineTextBox21);
             this.tabPage3.Controls.Add(this.materialTextBox5);
             this.tabPage3.Controls.Add(this.materialTextBox4);
@@ -2094,6 +2096,42 @@ namespace MaterialSkinExample
             this.materialTextBox21.UseSystemPasswordChar = false;
             this.materialTextBox21.LeadingIconClick += new System.EventHandler(this.materialTextBox21_LeadingIconClick);
             this.materialTextBox21.TrailingIconClick += new System.EventHandler(this.materialTextBox21_TrailingIconClick);
+            // 
+            // materialNumericUoDown
+            // 
+            this.materialNumericUoDown.AnimateReadOnly = false;
+            this.materialNumericUoDown.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
+            this.materialNumericUoDown.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+            this.materialNumericUoDown.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.materialNumericUoDown.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
+            this.materialNumericUoDown.Depth = 0;
+            this.materialNumericUoDown.DownIcon = global::MaterialSkinExample.Properties.Resources.keyboard_arrow_down_FILL1_wght400_GRAD0_opsz24;
+            this.materialNumericUoDown.ErrorMessage = "Invalid entry";
+            this.materialNumericUoDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.materialNumericUoDown.HelperText = "Helper Text";
+            this.materialNumericUoDown.HideSelection = true;
+            this.materialNumericUoDown.Location = new System.Drawing.Point(528, 458);
+            this.materialNumericUoDown.MaxLength = 32767;
+            this.materialNumericUoDown.MouseState = MaterialSkin.MouseState.OUT;
+            this.materialNumericUoDown.Name = "materialNumericUoDown";
+            this.materialNumericUoDown.PasswordChar = '\0';
+            this.materialNumericUoDown.PrefixSuffixText = "$";
+            this.materialNumericUoDown.ReadOnly = false;
+            this.materialNumericUoDown.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.materialNumericUoDown.SelectedText = "";
+            this.materialNumericUoDown.SelectionLength = 0;
+            this.materialNumericUoDown.SelectionStart = 0;
+            this.materialNumericUoDown.ShortcutsEnabled = true;
+            this.materialNumericUoDown.ShowAssistiveText = true;
+            this.materialNumericUoDown.Size = new System.Drawing.Size(384, 64);
+            this.materialNumericUoDown.TabIndex = 71;
+            this.materialNumericUoDown.TabStop = false;
+            this.materialNumericUoDown.Text = "MaterialTextBox2";
+            this.materialNumericUoDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.materialNumericUoDown.UpIcon = global::MaterialSkinExample.Properties.Resources.keyboard_arrow_up_FILL1_wght400_GRAD0_opsz24;
+            this.materialNumericUoDown.UseSystemPasswordChar = false;
+            this.materialNumericUoDown.LeadingIconClick += new System.EventHandler(this.materialTextBox21_LeadingIconClick);
+            this.materialNumericUoDown.TrailingIconClick += new System.EventHandler(this.materialTextBox21_TrailingIconClick);
             // 
             // materialMultiLineTextBox21
             // 
@@ -3690,5 +3728,6 @@ namespace MaterialSkinExample
         private MaterialLabel materialLabel57;
         private MaterialSwitch materialSwitch16;
         private MaterialLabel materialLabel58;
+        private MaterialNumericUoDown materialNumericUoDown;
     }
 }
