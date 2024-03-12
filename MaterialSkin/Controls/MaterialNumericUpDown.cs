@@ -1,3 +1,5 @@
+using System.Globalization;
+
 namespace MaterialSkin.Controls
 {
     using System;
@@ -1254,7 +1256,7 @@ namespace MaterialSkin.Controls
 
         public bool isFocused = false;
         private const int PREFIX_SUFFIX_PADDING = 4;
-        private const int ICON_SIZE = 16;
+        private const int ICON_SIZE = 24;
         private const int HINT_TEXT_SMALL_SIZE = 18;
         private const int HINT_TEXT_SMALL_Y = 4;
         private const int LEFT_PADDING = 16;
@@ -1392,21 +1394,6 @@ namespace MaterialSkin.Controls
                 MouseState == MouseState.HOVER && (!ReadOnly || (ReadOnly && !AnimateReadOnly)) ? DrawHelper.BlendColor(BackColor, SkinManager.BackgroundHoverColor, SkinManager.BackgroundHoverColor.A) : // Hover
                 DrawHelper.BlendColor(BackColor, SkinManager.BackgroundAlternativeColor, SkinManager.BackgroundAlternativeColor.A); // Normal
 
-            //Leading Icon
-            if (UpIcon != null || DownIcon != null)
-            {
-                if (_errorState)
-                {
-                    g.FillRectangle(iconsErrorBrushes["_downIcon"], _upIconBounds);
-                    g.FillRectangle(iconsErrorBrushes["_upIcon"], _upIconBounds);
-                }
-                else
-                {
-                    g.FillRectangle(iconsBrushes["_downIcon"], _upIconBounds);
-                    g.FillRectangle(iconsBrushes["_upIcon"], _upIconBounds);
-                }
-            }
-
             // HintText
             bool userTextPresent = !String.IsNullOrEmpty(Text);
             Rectangle helperTextRect = new Rectangle(LEFT_PADDING - _prefix_padding, LINE_Y + ACTIVATION_INDICATOR_HEIGHT, Width - (LEFT_PADDING - _prefix_padding) - _right_padding, HELPER_TEXT_HEIGHT);
@@ -1543,6 +1530,21 @@ namespace MaterialSkin.Controls
                 }
             }
 
+            //UpDown Icon
+            if (UpIcon != null || DownIcon != null)
+            {
+                if (_errorState)
+                {
+                    g.FillRectangle(iconsErrorBrushes["_downIcon"], _downIconBounds);
+                    g.FillRectangle(iconsErrorBrushes["_upIcon"], _upIconBounds);
+                }
+                else
+                {
+                    g.FillRectangle(iconsBrushes["_downIcon"], _downIconBounds);
+                    g.FillRectangle(iconsBrushes["_upIcon"], _upIconBounds);
+                }
+            }
+
         }
 
         protected override void OnMouseMove(MouseEventArgs e)
@@ -1555,15 +1557,45 @@ namespace MaterialSkin.Controls
             Cursor = Cursors.IBeam;
         }
 
+        protected override void OnMouseUp(MouseEventArgs e)
+        {
+            if (DesignMode)
+                return;
+
+            if (this._upIconBounds.Contains(e.Location))
+            {
+                Value += 1;
+                Text = Value.ToString(CultureInfo.InvariantCulture);
+            }
+            else if (this._downIconBounds.Contains(e.Location))
+            {
+                Value -= 1;
+                Text = Value.ToString(CultureInfo.InvariantCulture);
+            }
+            else
+            {
+                base.OnMouseUp(e);
+            }
+        }
+
         protected override void OnMouseDown(MouseEventArgs e)
         {
             if (DesignMode)
                 return;
 
-            baseTextBox?.Focus();
-            base.OnMouseDown(e);
+            if (this._upIconBounds.Contains(e.Location))
+            {
 
+            } else if (this._downIconBounds.Contains(e.Location)) {
+
+            }
+            else
+            {
+                baseTextBox?.Focus();
+                base.OnMouseDown(e);
+            }
         }
+
         protected override void OnMouseEnter(EventArgs e)
         {
             if (DesignMode)
@@ -1736,7 +1768,7 @@ namespace MaterialSkin.Controls
                 textureBrushGray.WrapMode = System.Drawing.Drawing2D.WrapMode.Clamp;
                 textureBrushRed.WrapMode = System.Drawing.Drawing2D.WrapMode.Clamp;
 
-                var iconRect = _upIconBounds;
+                var iconRect = _downIconBounds;
 
                 textureBrushGray.TranslateTransform(iconRect.X + iconRect.Width / 2 - _leadingIconIconResized.Width / 2,
                                                     iconRect.Y + iconRect.Height / 2 - _leadingIconIconResized.Height / 2);
@@ -1794,7 +1826,7 @@ namespace MaterialSkin.Controls
                 textureBrushGray.WrapMode = System.Drawing.Drawing2D.WrapMode.Clamp;
                 textureBrushRed.WrapMode = System.Drawing.Drawing2D.WrapMode.Clamp;
 
-                var iconRect = _downIconBounds;
+                var iconRect = _upIconBounds;
 
                 textureBrushGray.TranslateTransform(iconRect.X + iconRect.Width / 2 - _trailingIconResized.Width / 2,
                                                     iconRect.Y + iconRect.Height / 2 - _trailingIconResized.Height / 2);
@@ -1820,7 +1852,7 @@ namespace MaterialSkin.Controls
         private void UpdateRects()
         {
             _left_padding = LEFT_PADDING;
-            _right_padding = RIGHT_PADDING;
+            _right_padding = ICON_SIZE;
 
             if (_prefixsuffix == PrefixSuffixTypes.Prefix && _prefixsuffixText != null && _prefixsuffixText.Length > 0)
             {
@@ -1857,8 +1889,10 @@ namespace MaterialSkin.Controls
                 baseTextBox.Height = FONT_HEIGHT;
             }
 
-            _upIconBounds = new Rectangle(baseTextBox.Width - ICON_SIZE, (HEIGHT / 2) - (ICON_SIZE / 2), ICON_SIZE, ICON_SIZE);
-            _downIconBounds = new Rectangle(baseTextBox.Width - ICON_SIZE, (HEIGHT / 2) + (ICON_SIZE / 2), ICON_SIZE, ICON_SIZE);
+            var iconArea = (HEIGHT - _helperTextHeight) / 2;
+            var space = (iconArea * 2 - ICON_SIZE * 2) / 3;
+            _upIconBounds = new Rectangle(baseTextBox.Right, space, ICON_SIZE, ICON_SIZE);
+            _downIconBounds = new Rectangle(baseTextBox.Right, space + ICON_SIZE + space, ICON_SIZE, ICON_SIZE);
         }
 
         public void SetErrorState(bool ErrorState)
