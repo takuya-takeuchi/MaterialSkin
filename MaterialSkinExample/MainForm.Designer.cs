@@ -90,6 +90,9 @@ namespace MaterialSkinExample
             this.materialButton29 = new MaterialSkin.Controls.MaterialButton();
             this.materialButton30 = new MaterialSkin.Controls.MaterialButton();
             this.materialButton31 = new MaterialSkin.Controls.MaterialButton();
+            this.materialButton32 = new MaterialSkin.Controls.MaterialButton();
+            this.materialButton33 = new MaterialSkin.Controls.MaterialButton();
+            this.materialButton34 = new MaterialSkin.Controls.MaterialButton();
             this.materialLabel8 = new MaterialSkin.Controls.MaterialLabel();
             this.materialButton19 = new MaterialSkin.Controls.MaterialButton();
             this.materialButton20 = new MaterialSkin.Controls.MaterialButton();
