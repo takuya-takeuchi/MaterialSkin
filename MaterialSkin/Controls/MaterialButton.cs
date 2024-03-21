@@ -36,8 +36,20 @@
 
         private Size _IconSize;
 
+        private bool _KeepIconSize = false;
+
         [Category("Material Skin"), DefaultValue(false)]
-        public bool KeepIconSize { get; set; }
+        public bool KeepIconSize
+        {
+            get => this._KeepIconSize;
+            set
+            {
+                var update = this._KeepIconSize != value;
+                this._KeepIconSize = value;
+                if (update)
+                    this.preProcessIcons();
+            }
+        }
 
         /// <summary>
         /// Gets the SkinManager
