@@ -639,6 +639,9 @@ namespace MaterialSkinExample
             this.tabPage7.Controls.Add(this.materialButton29);
             this.tabPage7.Controls.Add(this.materialButton30);
             this.tabPage7.Controls.Add(this.materialButton31);
+            this.tabPage7.Controls.Add(this.materialButton32);
+            this.tabPage7.Controls.Add(this.materialButton33);
+            this.tabPage7.Controls.Add(this.materialButton34);
             this.tabPage7.Controls.Add(this.materialLabel8);
             this.tabPage7.Controls.Add(this.materialButton19);
             this.tabPage7.Controls.Add(this.materialButton20);
@@ -934,6 +937,72 @@ namespace MaterialSkinExample
             this.materialButton31.UseAccentColor = false;
             this.materialButton31.UseColorIcon = true;
             this.materialButton31.UseVisualStyleBackColor = true;
+            // 
+            // materialButton32
+            // 
+            this.materialButton32.AutoSize = false;
+            this.materialButton32.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.materialButton32.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.materialButton32.Depth = 0;
+            this.materialButton32.HighEmphasis = false;
+            this.materialButton32.Icon = global::MaterialSkinExample.Properties.Resources.star_FILL1_wght400_GRAD0_opsz48;
+            this.materialButton32.KeepIconSize = true;
+            this.materialButton32.Location = new System.Drawing.Point(280, 574);
+            this.materialButton32.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.materialButton32.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialButton32.Name = "materialButton32";
+            this.materialButton32.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.materialButton32.Size = new System.Drawing.Size(168, 33);
+            this.materialButton32.TabIndex = 1;
+            this.materialButton32.Text = "TEXT - COLORICON";
+            this.materialButton32.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.materialButton32.UseAccentColor = false;
+            this.materialButton32.UseColorIcon = true;
+            this.materialButton32.UseVisualStyleBackColor = true;
+            // 
+            // materialButton33
+            // 
+            this.materialButton33.AutoSize = false;
+            this.materialButton33.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.materialButton33.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.materialButton33.Depth = 0;
+            this.materialButton33.HighEmphasis = false;
+            this.materialButton33.Icon = global::MaterialSkinExample.Properties.Resources.star_FILL1_wght400_GRAD0_opsz48;
+            this.materialButton33.KeepIconSize = true;
+            this.materialButton33.Location = new System.Drawing.Point(522, 574);
+            this.materialButton33.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.materialButton33.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialButton33.Name = "materialButton33";
+            this.materialButton33.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.materialButton33.Size = new System.Drawing.Size(189, 33);
+            this.materialButton33.TabIndex = 1;
+            this.materialButton33.Text = "TEXT - COLORICON";
+            this.materialButton33.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Outlined;
+            this.materialButton33.UseAccentColor = false;
+            this.materialButton33.UseColorIcon = true;
+            this.materialButton33.UseVisualStyleBackColor = true;
+            // 
+            // materialButton34
+            // 
+            this.materialButton34.AutoSize = false;
+            this.materialButton34.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.materialButton34.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.materialButton34.Depth = 0;
+            this.materialButton34.HighEmphasis = false;
+            this.materialButton34.Icon = global::MaterialSkinExample.Properties.Resources.star_FILL1_wght400_GRAD0_opsz48;
+            this.materialButton34.KeepIconSize = true;
+            this.materialButton34.Location = new System.Drawing.Point(32, 574);
+            this.materialButton34.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.materialButton34.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialButton34.Name = "materialButton34";
+            this.materialButton34.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.materialButton34.Size = new System.Drawing.Size(174, 33);
+            this.materialButton34.TabIndex = 1;
+            this.materialButton34.Text = "TEXT - COLORICON";
+            this.materialButton34.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Text;
+            this.materialButton34.UseAccentColor = false;
+            this.materialButton34.UseColorIcon = true;
+            this.materialButton34.UseVisualStyleBackColor = true;
             // 
             // materialLabel8
             // 
@@ -3666,6 +3735,9 @@ namespace MaterialSkinExample
         private MaterialButton materialButton29;
         private MaterialButton materialButton30;
         private MaterialButton materialButton31;
+        private MaterialButton materialButton32;
+        private MaterialButton materialButton33;
+        private MaterialButton materialButton34;
         private MaterialTabSelector materialTabSelector1;
         private MaterialTabControl materialTabControl2;
         private TabPage tabPage8;
