@@ -948,7 +948,7 @@ namespace MaterialSkinExample
             this.materialButton32.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             this.materialButton32.Depth = 0;
             this.materialButton32.HighEmphasis = false;
-            this.materialButton32.Icon = global::MaterialSkinExample.Properties.Resources.star_FILL1_wght400_GRAD0_opsz48;
+            this.materialButton32.Icon = global::MaterialSkinExample.Properties.Resources.star_FILL1_wght400_GRAD0_opsz48_color;
             this.materialButton32.KeepIconSize = true;
             this.materialButton32.Location = new System.Drawing.Point(280, 574);
             this.materialButton32.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
@@ -970,7 +970,7 @@ namespace MaterialSkinExample
             this.materialButton33.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             this.materialButton33.Depth = 0;
             this.materialButton33.HighEmphasis = false;
-            this.materialButton33.Icon = global::MaterialSkinExample.Properties.Resources.star_FILL1_wght400_GRAD0_opsz48;
+            this.materialButton33.Icon = global::MaterialSkinExample.Properties.Resources.star_FILL1_wght400_GRAD0_opsz48_color;
             this.materialButton33.KeepIconSize = true;
             this.materialButton33.Location = new System.Drawing.Point(522, 574);
             this.materialButton33.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
@@ -992,7 +992,7 @@ namespace MaterialSkinExample
             this.materialButton34.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
             this.materialButton34.Depth = 0;
             this.materialButton34.HighEmphasis = false;
-            this.materialButton34.Icon = global::MaterialSkinExample.Properties.Resources.star_FILL1_wght400_GRAD0_opsz48;
+            this.materialButton34.Icon = global::MaterialSkinExample.Properties.Resources.star_FILL1_wght400_GRAD0_opsz48_color;
             this.materialButton34.KeepIconSize = true;
             this.materialButton34.Location = new System.Drawing.Point(32, 574);
             this.materialButton34.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
