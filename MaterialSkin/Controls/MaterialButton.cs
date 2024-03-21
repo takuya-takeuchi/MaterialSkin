@@ -663,7 +663,7 @@
             else
             {
                 s.Width += extra;
-                s.Height = HEIGHTDEFAULT;
+                //s.Height = HEIGHTDEFAULT;
             }
             if (Icon != null && Text.Length == 0 && s.Width < MINIMUMWIDTHICONONLY) s.Width = MINIMUMWIDTHICONONLY;
             else if (s.Width < MINIMUMWIDTH) s.Width = MINIMUMWIDTH;
