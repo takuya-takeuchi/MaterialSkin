@@ -87,6 +87,9 @@ namespace MaterialSkinExample
             this.materialButton26 = new MaterialSkin.Controls.MaterialButton();
             this.materialButton27 = new MaterialSkin.Controls.MaterialButton();
             this.materialButton28 = new MaterialSkin.Controls.MaterialButton();
+            this.materialButton29 = new MaterialSkin.Controls.MaterialButton();
+            this.materialButton30 = new MaterialSkin.Controls.MaterialButton();
+            this.materialButton31 = new MaterialSkin.Controls.MaterialButton();
             this.materialLabel8 = new MaterialSkin.Controls.MaterialLabel();
             this.materialButton19 = new MaterialSkin.Controls.MaterialButton();
             this.materialButton20 = new MaterialSkin.Controls.MaterialButton();
@@ -638,6 +641,9 @@ namespace MaterialSkinExample
             this.tabPage7.Controls.Add(this.materialButton26);
             this.tabPage7.Controls.Add(this.materialButton27);
             this.tabPage7.Controls.Add(this.materialButton28);
+            this.tabPage7.Controls.Add(this.materialButton29);
+            this.tabPage7.Controls.Add(this.materialButton30);
+            this.tabPage7.Controls.Add(this.materialButton31);
             this.tabPage7.Controls.Add(this.materialLabel8);
             this.tabPage7.Controls.Add(this.materialButton19);
             this.tabPage7.Controls.Add(this.materialButton20);
@@ -870,6 +876,69 @@ namespace MaterialSkinExample
             this.materialButton28.UseAccentColor = false;
             this.materialButton28.UseColorIcon = true;
             this.materialButton28.UseVisualStyleBackColor = true;
+            // 
+            // materialButton29
+            // 
+            this.materialButton29.AutoSize = false;
+            this.materialButton29.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.materialButton29.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.materialButton29.Depth = 0;
+            this.materialButton29.HighEmphasis = false;
+            this.materialButton29.Icon = global::MaterialSkinExample.Properties.Resources.baseline_favorite_border_color_24dp;
+            this.materialButton29.Location = new System.Drawing.Point(280, 514);
+            this.materialButton29.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.materialButton29.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialButton29.Name = "materialButton29";
+            this.materialButton29.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.materialButton29.Size = new System.Drawing.Size(168, 33);
+            this.materialButton29.TabIndex = 1;
+            this.materialButton29.Text = "TEXT - COLORICON";
+            this.materialButton29.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.materialButton29.UseAccentColor = false;
+            this.materialButton29.UseColorIcon = true;
+            this.materialButton29.UseVisualStyleBackColor = true;
+            // 
+            // materialButton30
+            // 
+            this.materialButton30.AutoSize = false;
+            this.materialButton30.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.materialButton30.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.materialButton30.Depth = 0;
+            this.materialButton30.HighEmphasis = false;
+            this.materialButton30.Icon = global::MaterialSkinExample.Properties.Resources.baseline_favorite_border_color_24dp;
+            this.materialButton30.Location = new System.Drawing.Point(522, 514);
+            this.materialButton30.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.materialButton30.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialButton30.Name = "materialButton30";
+            this.materialButton30.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.materialButton30.Size = new System.Drawing.Size(189, 33);
+            this.materialButton30.TabIndex = 1;
+            this.materialButton30.Text = "TEXT - COLORICON";
+            this.materialButton30.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Outlined;
+            this.materialButton30.UseAccentColor = false;
+            this.materialButton30.UseColorIcon = true;
+            this.materialButton30.UseVisualStyleBackColor = true;
+            // 
+            // materialButton31
+            // 
+            this.materialButton31.AutoSize = false;
+            this.materialButton31.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.materialButton31.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.materialButton31.Depth = 0;
+            this.materialButton31.HighEmphasis = false;
+            this.materialButton31.Icon = global::MaterialSkinExample.Properties.Resources.baseline_favorite_border_color_24dp;
+            this.materialButton31.Location = new System.Drawing.Point(32, 514);
+            this.materialButton31.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.materialButton31.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialButton31.Name = "materialButton31";
+            this.materialButton31.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.materialButton31.Size = new System.Drawing.Size(174, 33);
+            this.materialButton31.TabIndex = 1;
+            this.materialButton31.Text = "TEXT - COLORICON";
+            this.materialButton31.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Text;
+            this.materialButton31.UseAccentColor = false;
+            this.materialButton31.UseColorIcon = true;
+            this.materialButton31.UseVisualStyleBackColor = true;
             // 
             // materialLabel8
             // 
@@ -3597,6 +3666,9 @@ namespace MaterialSkinExample
         private MaterialButton materialButton26;
         private MaterialButton materialButton27;
         private MaterialButton materialButton28;
+        private MaterialButton materialButton29;
+        private MaterialButton materialButton30;
+        private MaterialButton materialButton31;
         private MaterialTabSelector materialTabSelector1;
         private MaterialTabControl materialTabControl2;
         private TabPage tabPage8;

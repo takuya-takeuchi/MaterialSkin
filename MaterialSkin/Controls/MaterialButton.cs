@@ -31,8 +31,13 @@
         [Browsable(false)]
         public int Depth { get; set; }
 
-        [Category("Material Skin")]
+        [Category("Material Skin"), DefaultValue(false)]
         public bool UseColorIcon { get; set; }
+
+        private Size _IconSize;
+
+        [Category("Material Skin"), DefaultValue(false)]
+        public bool KeepIconSize { get; set; }
 
         /// <summary>
         /// Gets the SkinManager
@@ -328,7 +333,7 @@
 
             int newWidth, newHeight;
             //Resize icon if greater than ICON_SIZE
-            if (Icon.Width > ICON_SIZE || Icon.Height > ICON_SIZE)
+            if (!KeepIconSize && (Icon.Width > ICON_SIZE || Icon.Height > ICON_SIZE))
             {
                 //calculate aspect ratio
                 float aspect = Icon.Width / (float)Icon.Height;
@@ -352,11 +357,15 @@
                         newWidth = (int)(newHeight * aspect);
                     }
                 }
+
+                _IconSize = new Size(ICON_SIZE, ICON_SIZE);
             }
             else
             {
                 newWidth = Icon.Width;
                 newHeight = Icon.Height;
+
+                _IconSize = new Size(Icon.Width, Icon.Height);
             }
 
             Bitmap IconResized = new Bitmap(Icon, newWidth, newHeight);
@@ -383,7 +392,7 @@
                 grayImageAttributes.SetColorMatrix(colorMatrixGray, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
 
                 // Image Rect
-                Rectangle destRect = new Rectangle(0, 0, ICON_SIZE, ICON_SIZE);
+                Rectangle destRect = new Rectangle(0, 0, _IconSize.Width, _IconSize.Height);
 
                 // Create a pre-processed copy of the image (GRAY)
                 Bitmap bgray = new Bitmap(destRect.Width, destRect.Height);
@@ -404,7 +413,7 @@
                 textureBrushGray.WrapMode = System.Drawing.Drawing2D.WrapMode.Clamp;
 
                 // Translate the brushes to the correct positions
-                var iconRect = new Rectangle(8, (Height / 2 - ICON_SIZE / 2), ICON_SIZE, ICON_SIZE);
+                var iconRect = new Rectangle(8, (Height / 2 - _IconSize.Height / 2), _IconSize.Width, _IconSize.Height);
 
                 textureBrushGray.TranslateTransform(iconRect.X + iconRect.Width / 2 - IconResized.Width / 2,
                                                     iconRect.Y + iconRect.Height / 2 - IconResized.Height / 2);
@@ -414,7 +423,7 @@
             else
             {
                 // Image Rect
-                Rectangle destRect = new Rectangle(0, 0, ICON_SIZE, ICON_SIZE);
+                Rectangle destRect = new Rectangle(0, 0, _IconSize.Width, _IconSize.Height);
 
                 // Create a pre-processed copy of the image (GRAY)
                 Bitmap bgray = new Bitmap(destRect.Width, destRect.Height);
@@ -435,7 +444,7 @@
                 textureBrushGray.WrapMode = System.Drawing.Drawing2D.WrapMode.Clamp;
 
                 // Translate the brushes to the correct positions
-                var iconRect = new Rectangle(8, (Height / 2 - ICON_SIZE / 2), ICON_SIZE, ICON_SIZE);
+                var iconRect = new Rectangle(8, (Height / 2 - _IconSize.Height / 2), _IconSize.Width, _IconSize.Height);
 
                 textureBrushGray.TranslateTransform(iconRect.X + iconRect.Width / 2 - IconResized.Width / 2,
                                                     iconRect.Y + iconRect.Height / 2 - IconResized.Height / 2);
@@ -565,8 +574,8 @@
             var textRect = ClientRectangle;
             if (Icon != null)
             {
-                textRect.Width -= 8 + ICON_SIZE + 4 + 8; // left padding + icon width + space between Icon and Text + right padding
-                textRect.X += 8 + ICON_SIZE + 4; // left padding + icon width + space between Icon and Text
+                textRect.Width -= 8 + _IconSize.Width + 4 + 8; // left padding + icon width + space between Icon and Text + right padding
+                textRect.X += 8 + _IconSize.Height + 4; // left padding + icon width + space between Icon and Text
             }
 
             Color textColor = Enabled ? (HighEmphasis ? (Type == MaterialButtonType.Text || Type == MaterialButtonType.Outlined) ?
@@ -591,7 +600,7 @@
             }
 
             //Icon
-            var iconRect = new Rectangle(8, (Height / 2) - (ICON_SIZE / 2), ICON_SIZE, ICON_SIZE);
+            var iconRect = new Rectangle(8, (Height / 2) - (_IconSize.Height / 2), _IconSize.Width, _IconSize.Height);
 
             if (string.IsNullOrEmpty(Text))
             {
@@ -630,7 +639,7 @@
             {
                 // 24 is for icon size
                 // 4 is for the space between icon & text
-                extra += ICON_SIZE + 4;
+                extra += _IconSize.Width + 4;
             }
 
             if (AutoSize)
