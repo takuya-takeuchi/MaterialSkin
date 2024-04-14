@@ -750,5 +750,13 @@
                 }
             };
         }
+
+        protected override void OnPaddingChanged(EventArgs e)
+        {
+            this.preProcessIcons();
+
+            base.OnPaddingChanged(e);
+        }
+
     }
 }
