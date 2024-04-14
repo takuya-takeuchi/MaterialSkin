@@ -50,6 +50,20 @@
                     this.preProcessIcons();
             }
         }
+        
+        private int _IconAndTextSpace = 4;
+
+        public int IconAndTextSpace
+        {
+            get => this._IconAndTextSpace;
+            set
+            {
+                var update = this._IconAndTextSpace != value;
+                this._IconAndTextSpace = value;
+                if (update)
+                    this.preProcessIcons();
+            }
+        }
 
         /// <summary>
         /// Gets the SkinManager
@@ -293,7 +307,7 @@
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
             AutoSize = true;
             Margin = new Padding(4, 6, 4, 6);
-            Padding = new Padding(0);
+            Padding = new Padding(8, 0, 8, 0);
         }
 
         /// <summary>
@@ -425,7 +439,7 @@
                 textureBrushGray.WrapMode = System.Drawing.Drawing2D.WrapMode.Clamp;
 
                 // Translate the brushes to the correct positions
-                var iconRect = new Rectangle(8, (Height / 2 - _IconSize.Height / 2), _IconSize.Width, _IconSize.Height);
+                var iconRect = new Rectangle(this.Padding.Left, (Height / 2 - _IconSize.Height / 2), _IconSize.Width, _IconSize.Height);
 
                 textureBrushGray.TranslateTransform(iconRect.X + iconRect.Width / 2 - IconResized.Width / 2,
                                                     iconRect.Y + iconRect.Height / 2 - IconResized.Height / 2);
@@ -456,7 +470,7 @@
                 textureBrushGray.WrapMode = System.Drawing.Drawing2D.WrapMode.Clamp;
 
                 // Translate the brushes to the correct positions
-                var iconRect = new Rectangle(8, (Height / 2 - _IconSize.Height / 2), _IconSize.Width, _IconSize.Height);
+                var iconRect = new Rectangle(this.Padding.Left, (Height / 2 - _IconSize.Height / 2), _IconSize.Width, _IconSize.Height);
 
                 textureBrushGray.TranslateTransform(iconRect.X + iconRect.Width / 2 - IconResized.Width / 2,
                                                     iconRect.Y + iconRect.Height / 2 - IconResized.Height / 2);
@@ -586,8 +600,8 @@
             var textRect = ClientRectangle;
             if (Icon != null)
             {
-                textRect.Width -= 8 + _IconSize.Width + 4 + 8; // left padding + icon width + space between Icon and Text + right padding
-                textRect.X += 8 + _IconSize.Height + 4; // left padding + icon width + space between Icon and Text
+                textRect.Width -= this.Padding.Left + _IconSize.Width + this.IconAndTextSpace + this.Padding.Right; // left padding + icon width + space between Icon and Text + right padding
+                textRect.X += this.Padding.Left + _IconSize.Height + this.IconAndTextSpace; // left padding + icon width + space between Icon and Text
             }
 
             Color textColor = Enabled ? (HighEmphasis ? (Type == MaterialButtonType.Text || Type == MaterialButtonType.Outlined) ?
@@ -612,7 +626,7 @@
             }
 
             //Icon
-            var iconRect = new Rectangle(8, (Height / 2) - (_IconSize.Height / 2), _IconSize.Width, _IconSize.Height);
+            var iconRect = new Rectangle(this.Padding.Left, (Height / 2) - (_IconSize.Height / 2), _IconSize.Width, _IconSize.Height);
 
             if (string.IsNullOrEmpty(Text))
             {
@@ -645,13 +659,13 @@
             Size s = base.GetPreferredSize(proposedSize);
 
             // Provides extra space for proper padding for content
-            var extra = 16;
+            var extra = this.Padding.Horizontal;
 
             if (Icon != null)
             {
                 // 24 is for icon size
                 // 4 is for the space between icon & text
-                extra += _IconSize.Width + 4;
+                extra += _IconSize.Width + this.IconAndTextSpace;
             }
 
             if (AutoSize)
@@ -736,5 +750,13 @@
                 }
             };
         }
+
+        protected override void OnPaddingChanged(EventArgs e)
+        {
+            this.preProcessIcons();
+
+            base.OnPaddingChanged(e);
+        }
+
     }
 }
